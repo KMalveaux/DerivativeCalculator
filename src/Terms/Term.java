@@ -12,8 +12,13 @@ public class Term {
         return new Lparen();
       case 4:
         return new Rparen();
+      case 5:
+        return new Plus();
+      case 6:
+        return new Multiply();
     }
-
     return null;
   }
+
+  public void printValue() {}
 }

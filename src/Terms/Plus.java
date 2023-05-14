@@ -1,9 +1,9 @@
 package Terms;
 
-public class Rparen extends Term {
+public class Plus extends Term {
 
   @Override
   public void printValue() {
-    System.out.println(')');
+    System.out.println('+');
   }
 }

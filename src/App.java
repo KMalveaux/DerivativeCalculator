@@ -1,5 +1,4 @@
 import Terms.Term;
-import Tree.EquationTreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,44 +10,11 @@ public class App {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Enter the equation here: ");
     String equation = scanner.nextLine();
-    buildEquationTree(equation);
-  }
+    List<Term> termList = Tokenizer.buildEquationTree(equation);
 
-  static void buildEquationTree(String equation) {
-    EquationTreeNode root = new EquationTreeNode();
-    String token = "";
-    Term tokenizer = new Term();
-
-    for (int i = 0; i < equation.length(); i++) {
-      char c = equation.charAt(i);
-      if (Character.isDigit(c) || c == '.') {
-        token += c;
-      } else if (Character.isLetter(c)) {
-        Term term = tokenizer.terminize(1, token);
-        Terms.Num term1 = (Terms.Num) term;
-        term1.printValue();
-        token = "";
-        token += c;
-      } else {
-        if (token.length() > 0) {
-          Term term = tokenizer.terminize(2, token);
-          Terms.Var term1 = (Terms.Var) term;
-          term1.printValue();
-          token = "";
-        }
-        if (c != ' ') {
-          System.out.println(c);
-          if (c == '(') {
-            tokenizer.terminize(3, String.valueOf(c));
-          } else if (c == ')') {
-            tokenizer.terminize(4, String.valueOf(c));
-          }
-        }
-      }
-    }
-
-    if (token.length() > 0) {
-      System.out.println(token);
+    System.out.println("Items in the termList: ");
+    for (Term term : termList) {
+      term.printValue();
     }
   }
 
